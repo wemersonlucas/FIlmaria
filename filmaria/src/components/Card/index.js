@@ -5,10 +5,10 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
+import Link from '@mui/material/Link';
 
 //Paths
 import api from "../../services/api";
@@ -58,19 +58,18 @@ export default function BasicCard() {
                 alignItems="center"
                 justifyContent="flex-start"
               >
-                <Avatar variant="square">
+                <Avatar variant="square" color="primary">
                   <Typography variant="body2" color="inherit">
                     {filme.vote_average}
                   </Typography>
                 </Avatar>
-                <Typography variant="body2" color="primary" ml={3}>
+                <Typography variant="body2" color="inherit" ml={3}>
                     {filme.release_date}
                   </Typography>
               </Box>
             </CardContent>
             <CardActions>
-              <Button size="small">Detalhes</Button>
-              <Button size="small">Add</Button>
+            <Link underline="none" color="inherit" href={`/filmes/${filme.id}`}>Detalhes</Link>
             </CardActions>
           </Card>
         );
