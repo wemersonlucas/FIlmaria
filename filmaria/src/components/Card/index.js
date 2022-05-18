@@ -1,66 +1,80 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from "react";
 
 //Material UI
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import Avatar from "@mui/material/Avatar";
 
 //Paths
-import api from '../../services/api';
+import api from "../../services/api";
 
 export default function BasicCard() {
-    const[filmes, setFilmes] = useState ([]);
+  const [filmes, setFilmes] = useState([]);
 
-    useEffect(() => {
-        async function loadFilmes(){
-            const response = await api.get("movie/now_playing", {
-                params:{
-                    api_key: "4f278857399cee26f668bc6b6985b95d",
-                    language: "PT-BR",
-                    page: 1,
-                }
-            })
+  useEffect(() => {
+    async function loadFilmes() {
+      const response = await api.get("movie/popular", {
+        params: {
+          api_key: "4f278857399cee26f668bc6b6985b95d",
+          language: "PT-BR",
+          page: 1,
+        },
+      });
+      console.log(response.data.results);
+      setFilmes(response.data.results);
+    }
 
-            console.log(response.data.results)
-            setFilmes(response.data.results.slice(0, 15));
-
-        }
-
-        loadFilmes();
-
-    },[])
+    loadFilmes();
+  }, []);
   return (
-        <Box>
-            {filmes.map((filme)=>{
-                return(
-<Card key={filme.id} sx={{ maxWidth: 345 }}>
-      <CardMedia
-        component="img"
-        alt="Filme"
-        height="140"
-        imagem={`https://api.themoviedb.org/3/movie/${filme.poster_path}`}
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {filme.title}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
-      </CardActions>
-    </Card>
-                )
-            })}
-        </Box>
-    
+    <Box
+      display="flex"
+      flexDirection="row"
+      alignItems="center"
+      justifyContent="center"
+      flexWrap='wrap'
+    >
+      {filmes.map((filme) => {
+        return (
+          <Card key={filme.id} sx={{ maxWidth: 345,margin: 2 }}>
+            <CardMedia
+              component="img"
+              alt="Filme"
+              height="550"
+              src={`https://image.tmdb.org/t/p/original/${filme.poster_path}`}
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                {filme.title}
+              </Typography>
+              <Box
+                display="flex"
+                flexDirection="row"
+                alignItems="center"
+                justifyContent="flex-start"
+              >
+                <Avatar variant="square">
+                  <Typography variant="body2" color="inherit">
+                    {filme.vote_average}
+                  </Typography>
+                </Avatar>
+                <Typography variant="body2" color="primary" ml={3}>
+                    {filme.release_date}
+                  </Typography>
+              </Box>
+            </CardContent>
+            <CardActions>
+              <Button size="small">Detalhes</Button>
+              <Button size="small">Add</Button>
+            </CardActions>
+          </Card>
+        );
+      })}
+    </Box>
   );
 }

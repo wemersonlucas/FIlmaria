@@ -14,7 +14,7 @@ export default function ButtonAppBar() {
           <Link underline="none" color="inherit" href="/">Prime Flix</Link>
           </Typography>
           <Typography variant="h6" component="div" ml={2}>
-          <Link underline="none" color="inherit" href="/favoritos">Meus filmes</Link>
+          <Link underline="none" color="inherit" href="/fimes">Meus filmes</Link>
           </Typography>
         </Toolbar>
       </AppBar>
