@@ -24,6 +24,7 @@ export default function Filmes() {
           },
         })
         .then((response) => {
+          console.log(response.data)
           setFilme(response.data);
         })
         .catch(() => {
@@ -74,6 +75,12 @@ export default function Filmes() {
             <Typography variant="body1" color="white">
               {filme.overview}
             </Typography>
+            <Typography variant="h5" color="white">
+              Trailler
+            </Typography>
+             <video width="320" height="240" controls>
+                <source   src={`https://image.tmdb.org/t/p/original/${filme.id}`} type="video/mp4" />
+            </video>
           </Box>
         </Grid>
       </Grid>

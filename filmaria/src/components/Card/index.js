@@ -8,7 +8,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
-import Link from '@mui/material/Link';
+import Link from "@mui/material/Link";
 
 //Paths
 import api from "../../services/api";
@@ -36,20 +36,20 @@ export default function BasicCard() {
       display="flex"
       flexDirection="row"
       alignItems="center"
-      justifyContent="center"
-      flexWrap='wrap'
+      justifyContent="flex-start"
+      flexWrap="wrap"
     >
       {filmes.map((filme) => {
         return (
-          <Card key={filme.id} sx={{ maxWidth: 345,margin: 2 }}>
+          <Card key={filme.id} sx={{ maxWidth: 345, margin: 2 }}>
             <CardMedia
               component="img"
               alt="Filme"
               height="550"
               src={`https://image.tmdb.org/t/p/original/${filme.poster_path}`}
             />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
+            <CardContent sx={{ backgroundColor: "#13293d" }}>
+              <Typography gutterBottom variant="h5" color="white">
                 {filme.title}
               </Typography>
               <Box
@@ -58,18 +58,26 @@ export default function BasicCard() {
                 alignItems="center"
                 justifyContent="flex-start"
               >
-                <Avatar variant="square" color="primary">
-                  <Typography variant="body2" color="inherit">
+                <Avatar variant="square" sx={{ backgroundColor: "#021322" }}>
+                  <Typography variant="body2" color="white">
                     {filme.vote_average}
                   </Typography>
                 </Avatar>
-                <Typography variant="body2" color="inherit" ml={3}>
-                    {filme.release_date}
-                  </Typography>
+                <Typography variant="body2" color="white" ml={3}>
+                  {filme.release_date}
+                </Typography>
               </Box>
             </CardContent>
-            <CardActions>
-            <Link underline="none" color="inherit" href={`/filmes/${filme.id}`}>Detalhes</Link>
+            <CardActions sx={{ backgroundColor: "#021322" }}>
+              <Typography variant="body1" color="white">
+                <Link
+                  underline="none"
+                  color="white"
+                  href={`/filmes/${filme.id}`}
+                >
+                  Detalhes
+                </Link>
+              </Typography>
             </CardActions>
           </Card>
         );
