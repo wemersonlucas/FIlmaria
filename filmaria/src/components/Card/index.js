@@ -25,12 +25,29 @@ export default function BasicCard() {
           page: 1,
         },
       });
-      console.log(response.data.results);
       setFilmes(response.data.results);
     }
 
     loadFilmes();
   }, []);
+
+  function salvarFilme(){
+    const minhaLista = localStorage.getItem('@primeflix');
+
+    let filmesSalvos = JSON.parse(minhaLista) || [];
+
+    const hasfilme = filmesSalvos.some( (filmesSalvos) => filmesSalvos);
+
+    if(hasfilme){
+      alert('Filme já adicionado');
+      return;
+    }
+
+    filmesSalvos.push(filmes);
+    localStorage.setItem("@primeflix",JSON.stringify(filmesSalvos));
+    alert('Filmes salvos com sucesso')
+  }
+
   return (
     <Box
       display="flex"
@@ -76,6 +93,15 @@ export default function BasicCard() {
                   href={`/filmes/${filme.id}`}
                 >
                   Detalhes
+                </Link>
+              </Typography>
+              <Typography variant="body1" color="white">
+                <Link
+                  underline="none"
+                  color="white"
+                  children={salvarFilme}
+                >
+                  Salvar
                 </Link>
               </Typography>
             </CardActions>
