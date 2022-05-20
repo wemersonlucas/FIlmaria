@@ -37,7 +37,7 @@ export default function BasicCard() {
     let filmesSalvos = JSON.parse(minhaLista) || [];
 
     const hasfilme = filmesSalvos.some( (filmesSalvo) => filmesSalvo.id === filmes.id);
-   console.log(hasfilme)
+
     if(hasfilme){
       alert('Filme já adicionado');
       return;
