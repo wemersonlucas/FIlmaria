@@ -5,8 +5,7 @@ import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
-
-
+import Button from "@mui/material/Button";
 
 //Paths
 import api from "../../services/api";
@@ -36,7 +35,6 @@ export default function Filmes() {
     loadFilmes();
   }, []);
 
-  
   return (
     <Box>
       <Grid container spacing={2}>
@@ -81,9 +79,15 @@ export default function Filmes() {
             <Typography variant="h5" color="white">
               Trailler
             </Typography>
-             <video width="320" height="240" controls>
-                <source   src={`https://youtube.com/results?search_query${filme.title}`} type="video/mp4" />
-            </video>
+            <Button
+              variant="outlined"
+              target="_blank"
+              color="error"
+              href={`https://youtube.com/results?search_query=${filme.title} title`}
+              sx={{ marginTop: 3 }}
+            >
+              Trailler
+            </Button>
           </Box>
         </Grid>
       </Grid>
