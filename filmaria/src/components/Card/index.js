@@ -36,8 +36,8 @@ export default function BasicCard() {
 
     let filmesSalvos = JSON.parse(minhaLista) || [];
 
-    const hasfilme = filmesSalvos.some( (filmesSalvo) => filmesSalvo.id === filmes.id);
-
+    const hasfilme = filmesSalvos.some( filmesSalvo => filmesSalvo.id === filmes.id);
+  
     if(hasfilme){
       alert('Filme já adicionado');
       return;
@@ -45,7 +45,7 @@ export default function BasicCard() {
 
     filmesSalvos.push(filmes);
     localStorage.setItem("@primeflix",JSON.stringify(filmesSalvos));
-    alert('Filmes salvos com sucesso')
+    alert('Filmes salvos com sucesso');
   }
 
   return (
