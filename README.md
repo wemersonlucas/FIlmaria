@@ -1,5 +1,9 @@
 # PrimeFlix
 
+# Em &#128679; construção &#128679;
+
+##
+
 ## Sobre o projeto
 Construido consumindo API do site https://www.themoviedb.org/?language=pt-BR, <br>
 consiste em listar os filmes mais populares na home do site, o usuário podera adicionar <br>
