@@ -81,7 +81,7 @@ export default function BasicCard() {
                   </Typography>
                 </Avatar>
                 <Typography variant="body2" color="white" ml={3}>
-                  {filme.release_date}
+                  {filme.release_date.split('-').reverse().join('/')}
                 </Typography>
               </Box>
             </CardContent>
